@@ -38,6 +38,10 @@ const props = defineProps({
   },
   styleValue: {
     type: String
+  },
+
+  isCssExcel: {
+    type: Boolean
   }
 });
 
@@ -72,7 +76,12 @@ const handleExportData = () => {
   <div class="table-top">
     <el-input style="width: 240px; height: 40px" :placeholder="placeholderText" />
 
-    <el-button v-if="!isHiddenExcel" @click="handleExportData" style="position: absolute; right: 150px" type="success">
+    <el-button v-if="!isHiddenExcel && !isCssExcel" @click="handleExportData" style="position: absolute; right: 150px" type="success">
+      <i class="pi pi-file-excel"></i>
+      Xuất excel
+    </el-button>
+
+    <el-button v-if="isCssExcel" @click="handleExportData" style="position: absolute; left: 700px" type="success">
       <i class="pi pi-file-excel"></i>
       Xuất excel
     </el-button>

@@ -10,6 +10,7 @@ import { useChartsStore } from "@/stores/charts";
 import LineChart from "@/components/charts/LineChart.vue";
 import AreaChart from "@/components/charts/AreaChart.vue";
 import BarChart from "@/components/charts/BarChart.vue";
+import { exportToExcel } from "@/utils/export";
 
 const userStore = useUserStore();
 
@@ -50,6 +51,11 @@ onMounted(() => {
   getOrderStat();
   getRevenueStat();
 });
+
+
+const handleExport = ()=>{
+  exportToExcel(JSON.stringify(userList.value))
+}
 </script>
 
 <template>
@@ -73,8 +79,8 @@ onMounted(() => {
     </div>
     <div class="dashboard-main">
       <el-card class="table" style="height: 530px;">
-        <BaseTable style="width: 50%;" :data="tableData" :columns="tableColumns" :isHiddenComponent="true" :isHiddenExcel="true" :isHiddenUpdate="true" screen="người dùng"
-          @edit="handleEditData" @delete="handleDelete" />
+        <BaseTable style="width: 50%;" :data="tableData" :isCssExcel="true" :columns="tableColumns" :isHiddenComponent="true" :isHiddenUpdate="true" screen="người dùng"
+          @edit="handleEditData" @delete="handleDelete" @export="handleExport" />
       </el-card>
 
       <el-card class="table" style="margin-left: 35px; height: 530px;">

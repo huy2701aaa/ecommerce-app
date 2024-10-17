@@ -1,5 +1,4 @@
-<script setup lang="ts">
-
+<script setup lang="ts"></script>
 const handleSuccess = () => {
   window.location.href = '/'
 }
